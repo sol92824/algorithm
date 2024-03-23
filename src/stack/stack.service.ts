@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStackDto } from './dto/create-stack.dto';
-import { UpdateStackDto } from './dto/update-stack.dto';
 
 @Injectable()
 export class StackService {
-  create(createStackDto: CreateStackDto) {
-    return 'This action adds a new stack';
-  }
+  stackMadeWithArray() {
+    let stack = [];
 
-  findAll() {
-    return `This action returns all stack`;
-  }
+    // 입력값을 push로 배열의 마지막에 추가
+    stack.push("google");
+    stack.push("instagram");
+    stack.push("youtube");
 
-  findOne(id: number) {
-    return `This action returns a #${id} stack`;
-  }
+    console.log(stack);
 
-  update(id: number, updateStackDto: UpdateStackDto) {
-    return `This action updates a #${id} stack`;
-  }
+    // 출력값을 pop으로 배열의 마지막에서 제거
+    console.log(stack.pop());
+    console.log(stack.pop());
 
-  remove(id: number) {
-    return `This action removes a #${id} stack`;
+    stack.push("amazon");
+
+    console.log(stack.pop());
+
+    let stack2 = [];
+
+    // 입력값을 unshift로 배열의 처음에 추가
+    stack2.unshift("create new file");
+    stack2.unshift("resized file");
+    stack2.unshift("cloned out wrinkle");
+
+    console.log(stack2);
+
+    // 출력값을 shift로 배열의 처음에서 제거
+    console.log(stack2.shift());
+    console.log(stack2.shift());
+    console.log(stack2.shift());
   }
 }
