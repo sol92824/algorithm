@@ -14,4 +14,9 @@ export class StackController {
   test55(): void {
     return this.stackService.test55();
   }
+
+  @Get('test56')
+  test56(): void {
+    return this.stackService.test56();
+  }
 }

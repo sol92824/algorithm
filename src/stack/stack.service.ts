@@ -53,6 +53,20 @@ export class StackService {
     console.log(stack.last.value);
     console.log(stack.size);
   }
+
+  test56() {
+    const stack = new Stack();
+
+    stack.push(10);
+    stack.push(100);
+    stack.push(1000);
+    const removed = stack.pop();
+    console.log(removed);
+    console.log(stack.size);
+    stack.pop();
+    stack.pop();
+    console.log(stack.size);
+  }
 }
 
 class Stack {
