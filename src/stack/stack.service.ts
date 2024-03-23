@@ -34,6 +34,25 @@ export class StackService {
     console.log(stack2.shift());
     console.log(stack2.shift());
   }
+
+  test55() {
+    const stack = new Stack();
+
+    stack.push(10);
+    console.log(stack.first.value);
+    console.log(stack.last.value);
+    console.log(stack.size);
+
+    stack.push(100);
+    console.log(stack.first.value);
+    console.log(stack.last.value);
+    console.log(stack.size);
+
+    stack.push(1000);
+    console.log(stack.first.value);
+    console.log(stack.last.value);
+    console.log(stack.size);
+  }
 }
 
 class Stack {
