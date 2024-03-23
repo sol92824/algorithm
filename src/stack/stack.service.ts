@@ -35,3 +35,50 @@ export class StackService {
     console.log(stack2.shift());
   }
 }
+
+class Stack {
+  first: Node;
+  last: Node;
+  size: number;
+
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+
+  // 1. value를 인자로 받는 push 함수 생성
+  push(value: any):number {
+    // 2. value로 새로운 Node 생성
+    let newNode = new Node(value);
+
+    // 3. Stack이 Node를 가지고 있지 않으면, first와 last 속성을 새로 생성된 Node로 설정
+    if (this.size === 0) {
+      this.first = newNode;
+      this.last = newNode;
+    }
+    else {
+      // 4. Stack에 Node가 하나라도 있다면, first 속성을 저장할 변수 생성
+      let currentFirst = this.first;
+
+      // 5. first 속성을 새로 생성된 Node로 재설정
+      this.first = newNode;
+
+      // 6. 새로 생성된 Node의 next 속성을 4번에서 생성된 변수로 설정
+      this.first.next = currentFirst;
+    }
+
+    // 7. Stack의 size 속성 1 증가 및 리턴
+    return ++this.size;
+  }
+}
+
+class Node {
+  value: any;
+  next: Node;
+  
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
