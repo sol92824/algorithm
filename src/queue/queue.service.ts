@@ -31,6 +31,25 @@ export class QueueService {
     console.log(queue2.pop());
     console.log(queue2.pop());
   }
+
+  test57() {
+    const stack = new Stack();
+
+    stack.push(10).push(20).push(30);
+
+    console.log(stack.pop());
+    console.log(stack.pop());
+    console.log(stack.pop());
+    console.log(stack.pop());
+
+    stack.push(30).push(40).push(50);
+
+    console.log(stack.pop());
+
+    stack.push(60);
+
+    console.log(stack.pop());
+  }
 }
 
 class Queue {
@@ -98,5 +117,46 @@ class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
+  }
+}
+
+// Queue 클래스 상속
+class Stack extends Queue {
+  push(value: any): Stack {
+    // 1. enqueue를 통해 마지막에 Node 추가
+    this.enqueue(value);
+
+    return this;
+  }
+
+  pop(): any {
+    // 1. 삭제할 Node가 없으면 null 리턴
+    if (this.size === 0) {
+      return null;
+    }
+
+    // 2. 임시 Stack 생성
+    const tempStack = new Stack();
+
+    // 3 - 1. 원본 Stack에 Node가 하나가 남을 때까지 dequeue
+    // 3 - 2. 삭제된 Node는 tempSatck에 enqueue
+    // 결과 : 마지막 Node를 제외한 Node가 기존 Stack과 동일한 순서대로 tempStack에 삽입
+    while (this.size > 1) {
+      tempStack.enqueue(this.dequeue());
+    }
+
+    // 4 - 1. 마지막 남은 Node의 value는 리턴해야 하므로 result 변수로 선언
+    // 4 - 2. 마지막 남은 Node 최종 삭제
+    const result = this.first.value;
+    this.dequeue();
+
+    // 5 - 1. tempStack에 있는 Node를 모두 dequeue
+    // 5 - 2. 삭제된 Node는 원본 Stack에 enqueue
+    while (tempStack.size > 0) {
+      this.enqueue(tempStack.dequeue());
+    }
+
+    // 4 - 1 에서 선언한 result 변수 리턴
+    return result;
   }
 }

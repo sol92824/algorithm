@@ -9,4 +9,9 @@ export class QueueController {
   queueMadeWithArray(): void {
     return this.queueService.queueMadeWithArray();
   }
+
+  @Get('test57')
+  test57(): void {
+    return this.queueService.test57();
+  }
 }
