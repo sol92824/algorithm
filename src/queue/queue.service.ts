@@ -50,6 +50,17 @@ export class QueueService {
 
     console.log(stack.pop());
   }
+
+  test58() {
+    const queue = new Queue();
+
+    queue.enqueue(10);
+    console.log(queue.size);
+    queue.enqueue(100);
+    console.log(queue.size);
+    queue.enqueue(1000);
+    console.log(queue.size);
+  }
 }
 
 class Queue {

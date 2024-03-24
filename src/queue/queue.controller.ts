@@ -14,4 +14,9 @@ export class QueueController {
   test57(): void {
     return this.queueService.test57();
   }
+
+  @Get('test58')
+  test58(): void {
+    return this.queueService.test58();
+  }
 }
