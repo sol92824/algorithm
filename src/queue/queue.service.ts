@@ -45,7 +45,7 @@ class Queue {
   }
 
   // 1. value를 인자로 받는 enqueue 함수 생성
-  enqueue(value: any) {
+  enqueue(value: any): number {
     // 2. value로 새로운 Node 생성
     const newNode = new Node(value);
 
@@ -66,7 +66,7 @@ class Queue {
   }
 
   // 1. 인자를 받지 않는 dequeue 함수 생성
-  dequeue() {
+  dequeue(): Node {
     // 2. Stack이 Node를 가지고 있지 않으면, null 리턴
     if (this.size === 0) {
       return null;
