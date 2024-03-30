@@ -21,6 +21,25 @@ export class BinarySearchTreeService {
     console.log(binarySearchTree.root.right.value);
     console.log(binarySearchTree.root.left.right.value);
   }
+
+  test60() {
+    const binarySearchTree = new BinarySearchTree();
+
+    binarySearchTree.insert(15).insert(20).insert(10).insert(12);
+
+    const foundNode = binarySearchTree.find(20);
+    console.log(foundNode.value);
+    console.log(foundNode.left);
+    console.log(foundNode.right);
+
+    const binarySearchTree2 = new BinarySearchTree();
+
+    binarySearchTree2.insert(15).insert(20).insert(10).insert(12);
+
+    const foundNode2 = binarySearchTree2.find(120);
+
+    console.log(foundNode2);
+  }
 }
 
 class BinarySearchTree {
@@ -73,6 +92,34 @@ class BinarySearchTree {
         current = current.right;
       }
     }
+  }
+
+  find(value: number): undefined | Node {
+    // 1. root가 존재하지 않으면, 검색할 노드가 없으므로 undefined 반환
+    if (this.root === null) {
+      return undefined;
+    }
+
+    let current = this.root;
+
+    // 2. 검색할 노드에 값이 있는동안 반복문 실행
+    while (current) {
+      // 3. 입력된 값이 현재 위치의 값보다 작으면 왼쪽
+      if (value < current.value) {
+        current = current.left;
+      }
+      // 4. 입력된 값이 현재 위치의 값보다 크면 오른쪽
+      else if (value > current.value) {
+        current = current.right;
+      }
+      // 5. 입력된 값이 현재 위치의 값과 동일하면 현재 노드 반환
+      else {
+        return current;
+      }
+    }
+
+    // 6. 노드의 끝에 도착했으나 값을 찾지 못했으므로 undefined 반환
+    return undefined;
   }
 }
 
