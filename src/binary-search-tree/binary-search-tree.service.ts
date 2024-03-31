@@ -41,6 +41,23 @@ export class BinarySearchTreeService {
     console.log(foundNode2);
   }
 
+  test61() {
+    const binarySearchTree = new BinarySearchTree();
+
+    binarySearchTree
+      .insert(15)
+      .insert(20)
+      .insert(10)
+      .insert(12)
+      .insert(1)
+      .insert(5)
+      .insert(50);
+
+    console.log(binarySearchTree.DFSPreOrder());
+    console.log(binarySearchTree.DFSInOrder());
+    console.log(binarySearchTree.DFSPostOrder());
+  }
+
   test62() {
     const binarySearchTree = new BinarySearchTree();
 
@@ -164,6 +181,69 @@ class BinarySearchTree {
     }
 
     // 6. 현재까지 거쳐간 node의 value가 담긴 data 반환
+    return data;
+  }
+
+  // 전위 순회
+  DFSPreOrder(): any[] {
+    const data = [];
+
+    function traverse(currentNode) {
+      data.push(currentNode.value);
+
+      if (currentNode.left) {
+        traverse(currentNode.left);
+      }
+
+      if (currentNode.right) {
+        traverse(currentNode.right);
+      }
+    }
+
+    traverse(this.root);
+
+    return data;
+  }
+
+  // 후위 순회
+  DFSPostOrder(): any[] {
+    const data = [];
+
+    function traverse(currentNode) {
+      if (currentNode.left) {
+        traverse(currentNode.left);
+      }
+
+      if (currentNode.right) {
+        traverse(currentNode.right);
+      }
+
+      data.push(currentNode.value);
+    }
+
+    traverse(this.root);
+
+    return data;
+  }
+
+  // 중위 순회
+  DFSInOrder(): any[] {
+    const data = [];
+
+    function traverse(currentNode) {
+      if (currentNode.left) {
+        traverse(currentNode.left);
+      }
+
+      data.push(currentNode.value);
+
+      if (currentNode.right) {
+        traverse(currentNode.right);
+      }
+    }
+
+    traverse(this.root);
+
     return data;
   }
 }
