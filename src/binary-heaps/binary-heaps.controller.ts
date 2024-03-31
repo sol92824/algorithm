@@ -9,4 +9,9 @@ export class BinaryHeapsController {
   test66(): void {
     return this.binaryHeapsService.test66();
   }
+
+  @Get('test67')
+  test67(): void {
+    return this.binaryHeapsService.test67();
+  }
 }
