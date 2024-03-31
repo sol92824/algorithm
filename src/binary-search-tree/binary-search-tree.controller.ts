@@ -16,4 +16,9 @@ export class BinarySearchTreeController {
   test60(): void {
     return this.binarySearchTreeService.test60();
   }
+
+  @Get('test62')
+  test62(): void {
+    return this.binarySearchTreeService.test62();
+  }
 }

@@ -40,6 +40,21 @@ export class BinarySearchTreeService {
 
     console.log(foundNode2);
   }
+
+  test62() {
+    const binarySearchTree = new BinarySearchTree();
+
+    binarySearchTree
+      .insert(15)
+      .insert(20)
+      .insert(10)
+      .insert(12)
+      .insert(1)
+      .insert(5)
+      .insert(50);
+
+    console.log(binarySearchTree.breadthFirstSearch());
+  }
 }
 
 class BinarySearchTree {
@@ -120,6 +135,36 @@ class BinarySearchTree {
 
     // 6. 노드의 끝에 도착했으나 값을 찾지 못했으므로 undefined 반환
     return undefined;
+  }
+
+  breadthFirstSearch(): any[] {
+    const data = [];
+    const queue = [];
+    let currentNode = null;
+
+    // 1. queue에 root로 설정
+    queue.push(this.root);
+
+    // 2. queue에 값이 있는 동안 반복문 수행
+    while (queue.length) {
+      // 3. 현재 노드는 queue에 제일 첫번째 노드로 설정
+      currentNode = queue.shift();
+      // 4. 현재 노드의 value를 data에 삽입
+      data.push(currentNode.value);
+
+      // 5. 현재 노드의 left 속성이 존재한다면, queue에 삽입
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+
+      // 5. 현재 노드의 right 속성이 존재한다면, queue에 삽입
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+    }
+
+    // 6. 현재까지 거쳐간 node의 value가 담긴 data 반환
+    return data;
   }
 }
 
