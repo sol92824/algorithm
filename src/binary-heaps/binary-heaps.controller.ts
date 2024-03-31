@@ -14,4 +14,9 @@ export class BinaryHeapsController {
   test67(): void {
     return this.binaryHeapsService.test67();
   }
+
+  @Get('priorityQueue')
+  priorityQueue(): void {
+    return this.binaryHeapsService.priorityQueue();
+  }
 }
