@@ -15,6 +15,11 @@ export class GraphsController {
     return this.graphsService.test69();
   }
 
+  @Get('test70')
+  test70(): void {
+    return this.graphsService.test70();
+  }
+
   @Get('graphs')
   graphs(): void {
     return this.graphsService.graphs();

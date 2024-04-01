@@ -36,6 +36,26 @@ export class GraphsService {
     console.log(graph.adjacencyList['D']);
   }
 
+  test70() {
+    const graph = new Graph();
+
+    graph.addVertex('A');
+    graph.addVertex('B');
+    graph.addVertex('C');
+    graph.addVertex('D');
+
+    graph.addEdge('A', 'B');
+    graph.addEdge('A', 'C');
+    graph.addEdge('B', 'D');
+    graph.addEdge('C', 'D');
+
+    graph.removeVertex('C');
+    graph.removeVertex('B');
+
+    console.log(graph.adjacencyList['A']);
+    console.log(graph.adjacencyList['D']);
+  }
+
   graphs() {
     const graph = new Graph();
 
@@ -78,5 +98,16 @@ class Graph {
     this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
       (v) => v !== vertex1,
     );
+  }
+
+  removeVertex(vertex: any): any {
+    // 1. 양방향 연결 해제를 위해 삭제할 노드와 연결된 노드 리스트 순회
+    while (this.adjacencyList[vertex].length) {
+      // 2. removeEdge를 활용하여 v1 -> v2 / v2 -> v1 두 개의 연결 동시 삭제
+      const adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, adjacentVertex);
+    }
+
+    delete this.adjacencyList[vertex];
   }
 }
