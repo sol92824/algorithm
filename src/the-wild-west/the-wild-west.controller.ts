@@ -9,4 +9,9 @@ export class TheWildWestController {
   test77(): void {
     return this.theWildWestService.test77();
   }
+
+  @Get('test78')
+  test78(): void {
+    return this.theWildWestService.test78();
+  }
 }
