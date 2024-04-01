@@ -96,6 +96,25 @@ export class GraphsService {
     console.log(graph.depthFirstIterative('S'));
   }
 
+  test72() {
+    const graph = new Graph();
+
+    graph.addVertex('A');
+    graph.addVertex('B');
+    graph.addVertex('C');
+    graph.addVertex('D');
+
+    graph.addEdge('A', 'B');
+    graph.addEdge('A', 'C');
+    graph.addEdge('B', 'D');
+    graph.addEdge('C', 'D');
+
+    console.log(graph.adjacencyList['A']);
+    console.log(graph.adjacencyList['B']);
+    console.log(graph.adjacencyList['C']);
+    console.log(graph.adjacencyList['D']);
+  }
+
   graphs() {
     const graph = new Graph();
 
@@ -151,7 +170,7 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
 
-  depthFirstRecursive(start) {
+  depthFirstRecursive(start: any): any[] {
     // 1. 나중에 리턴할 배열과 이미 방문한 노드를 표기할 객체 생성
     const result = [];
     const visited = {};
@@ -180,7 +199,7 @@ class Graph {
     return result;
   }
 
-  depthFirstIterative(start) {
+  depthFirstIterative(start: any): any[] {
     // 1. 나중에 리턴할 배열과 이미 방문한 노드를 표기할 객체 생성
     const stack = [start];
     const result = [];
