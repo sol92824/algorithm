@@ -56,6 +56,46 @@ export class GraphsService {
     console.log(graph.adjacencyList['D']);
   }
 
+  test71() {
+    const graph = new Graph();
+
+    graph.addVertex('S');
+    graph.addVertex('P');
+    graph.addVertex('U');
+    graph.addVertex('X');
+    graph.addVertex('Q');
+    graph.addVertex('Y');
+    graph.addVertex('V');
+    graph.addVertex('R');
+    graph.addVertex('W');
+    graph.addVertex('T');
+
+    graph.addEdge('S', 'P');
+    graph.addEdge('S', 'U');
+
+    graph.addEdge('P', 'X');
+    graph.addEdge('U', 'X');
+
+    graph.addEdge('P', 'Q');
+    graph.addEdge('U', 'V');
+
+    graph.addEdge('X', 'Q');
+    graph.addEdge('X', 'Y');
+    graph.addEdge('X', 'V');
+
+    graph.addEdge('Q', 'R');
+    graph.addEdge('Y', 'R');
+
+    graph.addEdge('Y', 'W');
+    graph.addEdge('V', 'W');
+
+    graph.addEdge('R', 'T');
+    graph.addEdge('W', 'T');
+
+    console.log(graph.depthFirstRecursive('S'));
+    console.log(graph.depthFirstIterative('S'));
+  }
+
   graphs() {
     const graph = new Graph();
 
@@ -109,5 +149,63 @@ class Graph {
     }
 
     delete this.adjacencyList[vertex];
+  }
+
+  depthFirstRecursive(start) {
+    // 1. 나중에 리턴할 배열과 이미 방문한 노드를 표기할 객체 생성
+    const result = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+
+    // 2. 헬퍼 함수 생성
+    (function dfs(vertex) {
+      // 3. 방문할 노드가 비어있으면 null 리턴
+      if (!vertex) {
+        return null;
+      }
+
+      // 4. visited / resulted 업데이트
+      visited[vertex] = true;
+      result.push(vertex);
+
+      // 5. 현재 노드에 연결된 노드를 순회
+      adjacencyList[vertex].forEach((neighbor) => {
+        // 6. 방문한 기록이 없는 인접 노드일 경우에만 해당 로직 재실행
+        if (!visited[neighbor]) {
+          return dfs(neighbor);
+        }
+      });
+    })(start);
+
+    return result;
+  }
+
+  depthFirstIterative(start) {
+    // 1. 나중에 리턴할 배열과 이미 방문한 노드를 표기할 객체 생성
+    const stack = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+
+    visited[start] = true;
+
+    // 2. 스택에 더 이상 방문할 노드가 남아있지 않을 때까지 순회
+    while (stack.length) {
+      // 3. pop()을 통해서 제일 마지막에 입력된 노드 우선 실행
+      currentVertex = stack.pop();
+      // 4. resulted 업데이트
+      result.push(currentVertex);
+
+      // 5. 현재 노드에 연결된 노드를 순회
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        // 6. 방문한 기록이 없는 인접 노드일 경우에만 visited 업데이트 및 stack 업데이트
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor);
+        }
+      });
+    }
+
+    return result;
   }
 }

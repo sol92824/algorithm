@@ -20,6 +20,11 @@ export class GraphsController {
     return this.graphsService.test70();
   }
 
+  @Get('test71')
+  test71(): void {
+    return this.graphsService.test71();
+  }
+
   @Get('graphs')
   graphs(): void {
     return this.graphsService.graphs();
