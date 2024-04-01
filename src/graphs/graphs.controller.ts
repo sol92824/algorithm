@@ -9,4 +9,9 @@ export class GraphsController {
   test68(): void {
     return this.graphsService.test68();
   }
+
+  @Get('graphs')
+  graphs(): void {
+    return this.graphsService.graphs();
+  }
 }
