@@ -45,8 +45,13 @@ export class HashTablesService {
     ht2.set('lightcoral', '#F08080');
     ht2.set('mediumvioletred', '#C71585');
     ht2.set('plum', '#DDA0DD');
+    ht2.set('purple', '#DDA0DD');
+    ht2.set('violet', '#DDA0DD');
 
     console.log(ht2.get('yellow'));
+
+    console.log(ht2.keys());
+    console.log(ht2.values());
   }
 }
 
@@ -101,5 +106,45 @@ class HashTable {
 
     // 3. 해당 인덱스를 모두 조회했음에도 값을 리턴하지 못했다면 값이 없는 것이므로 undefined 반환
     return undefined;
+  }
+
+  values() {
+    const valuesArr = [];
+
+    // 1. 전체 keyMap의 크기만큼 순회
+    for (let i = 0; i < this.keyMap.length; i++) {
+      // 2. 값을 가진 인덱스가 있다면
+      if (this.keyMap[i]) {
+        // 3. 해당 값을 가진 인덱스의 배열의 크기만큼 순회
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          // 4. 동일한 값을 가지지 않은 경우에만 push
+          if (!valuesArr.includes(this.keyMap[i][j][1])) {
+            valuesArr.push(this.keyMap[i][j][1]);
+          }
+        }
+      }
+    }
+
+    return valuesArr;
+  }
+
+  keys() {
+    const keysArr = [];
+
+    // 1. 전체 keyMap의 크기만큼 순회
+    for (let i = 0; i < this.keyMap.length; i++) {
+      // 2. 값을 가진 인덱스가 있다면
+      if (this.keyMap[i]) {
+        // 3. 해당 값을 가진 인덱스의 배열의 크기만큼 순회
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          // 4. 동일한 값을 가지지 않은 경우에만 push
+          if (!keysArr.includes(this.keyMap[i][j][0])) {
+            keysArr.push(this.keyMap[i][j][0]);
+          }
+        }
+      }
+    }
+
+    return keysArr;
   }
 }
