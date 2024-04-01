@@ -7,6 +7,8 @@ import { BinarySearchTreeModule } from './binary-search-tree/binary-search-tree.
 import { BinaryHeapsModule } from './binary-heaps/binary-heaps.module';
 import { HashTablesModule } from './hash-tables/hash-tables.module';
 import { GraphsModule } from './graphs/graphs.module';
+import { DynamicProgramModule } from './dynamic-program/dynamic-program.module';
+import { TheWildWestModule } from './the-wild-west/the-wild-west.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { GraphsModule } from './graphs/graphs.module';
     BinaryHeapsModule,
     HashTablesModule,
     GraphsModule,
+    DynamicProgramModule,
+    TheWildWestModule,
   ],
   controllers: [AppController],
   providers: [AppService],
