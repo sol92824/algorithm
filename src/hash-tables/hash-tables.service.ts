@@ -36,13 +36,24 @@ export class HashTablesService {
     console.log(ht.set('hi', 'bye'));
     console.log(ht.set('french', 'fries'));
     console.log(ht.keyMap);
+
+    const ht2 = new HashTable(17);
+    ht2.set('maroon', '#800000');
+    ht2.set('yellow', '#FFFF00');
+    ht2.set('olive', '#808000');
+    ht2.set('salmon', '#FA8072');
+    ht2.set('lightcoral', '#F08080');
+    ht2.set('mediumvioletred', '#C71585');
+    ht2.set('plum', '#DDA0DD');
+
+    console.log(ht2.get('yellow'));
   }
 }
 
 class HashTable {
   keyMap: any[];
 
-  constructor(size = 4) {
+  constructor(size = 53) {
     this.keyMap = new Array(size);
   }
 
@@ -71,5 +82,24 @@ class HashTable {
     this.keyMap[index].push([key, value]);
 
     return index;
+  }
+
+  get(key: string) {
+    // 1. _hash 함수를 통해 keyMap에서 조회할 인덱스 위치 받아오기
+    const index = this._hash(key);
+
+    // 2. 해당 인덱스가 비어있지 않다면
+    if (this.keyMap[index]) {
+      // 2-1. 해당 인덱스에 존재하는 배열의 크기만큼 반복문 실행
+      for (let i = 0; i < this.keyMap[index].length; i++) {
+        // 2-2. 입력한 키와 동일한 값을 0번째 인덱스에 가진 배열이 나오면 리턴
+        if (this.keyMap[index][i][0] === key) {
+          return this.keyMap[index][i][1];
+        }
+      }
+    }
+
+    // 3. 해당 인덱스를 모두 조회했음에도 값을 리턴하지 못했다면 값이 없는 것이므로 undefined 반환
+    return undefined;
   }
 }
